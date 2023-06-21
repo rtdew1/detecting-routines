@@ -1,0 +1,7 @@
+keras==2.9.0
+keras_nightly==2.8.0.dev2021112808
+numpy==1.21.3
+pandas==1.4.3
+plotly==5.4.0
+scikit_learn==1.1.1
+tqdm==4.62.3
