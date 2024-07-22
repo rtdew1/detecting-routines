@@ -1,5 +1,6 @@
 # Detecting Routines: Implications for Ridesharing CRM
-# Maintained by: Ryan Dew (first.last@upenn.edu)
+
+**Maintained by:** Ryan Dew (first.last@upenn.edu)
 
 Code repository to accompany Detecting Routines: Implications for Ridesharing CRM.
 
