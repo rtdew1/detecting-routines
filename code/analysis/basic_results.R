@@ -11,19 +11,14 @@ library(corrplot)
 
 # Loading -----------------------------------------------------------------
 
-weeks_lower = 52 # (greater than)
-weeks_upper = 90 # (less than or equals to)
-n_weeks = weeks_upper - weeks_lower
-
 load("analysis_inputs/dl_fl_workspace.RData")
 load("analysis_inputs/y_nsessions.RData")
 load("analysis_inputs/decomp.RData")
 
-setwd("results/")
+n_weeks = nrow(y_actual)
 
 
 # Plots and tables --------------------------------------------------------
-
 
 mu_plot = ggplot(data = data.frame(wday = inputs[,1], fhour = inputs[,2], lambda = colMeans(fl$mu)),
                  aes(x = -wday, y = fhour, fill = lambda)) + 
@@ -40,7 +35,7 @@ mu_plot = ggplot(data = data.frame(wday = inputs[,1], fhour = inputs[,2], lambda
   coord_flip()+ 
   theme(text = element_text(size = 14)) 
 
-pdf("basic_results-mu.pdf", height=3, width=5.5)
+pdf("results/nonroutine_ride_heatmap.pdf", height=3, width=5.5)
 mu_plot
 dev.off()
 
@@ -49,10 +44,10 @@ decomp_plot = ggplot(data = data.frame(Random = decomp$random[dl$W,], Routine = 
   xlab("Random") + 
   ylab("Routine") + 
   xlim(0,12) + ylim(0,12) + 
-  ggtitle("Decomposition: Week 38")  + 
+  ggtitle(paste("Decomposition: Week", dl$W))  + 
   theme_bw() + 
   theme(text = element_text(size = 14), plot.margin = unit(c(0.5,0.5,0.5,0.5),"cm"))
 
-png(file = "basic_results-decomp.png", height=5, width=5, units = "in", res = 300)
+png(file = "results/routine_vs_random_rides.png", height=5, width=5, units = "in", res = 300)
 decomp_plot
 dev.off()

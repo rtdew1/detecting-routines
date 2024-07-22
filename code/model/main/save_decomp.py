@@ -4,10 +4,13 @@ import os
 import arviz as az
 from numpy import pi as pi
 
-trace = az.from_netcdf(os.path.expanduser("posterior.nc"))
+train_df = pd.read_csv("../../data/train.csv")
+
+trace = az.from_netcdf("posterior.nc")
+
 trace.stack(sample=["chain", "draw"], inplace = True)
 
-n_weeks_train = 38
+n_weeks_train = train_df.week.max()
 n_people, n_weeks_total, n_samples = trace.posterior['alpha'].shape
 n_dayhours = 168
 

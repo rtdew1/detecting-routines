@@ -2,22 +2,19 @@
 import numpy as np
 import pandas as pd
 import os
-
 from utils.config import args
 
-os.chdir(os.path.expanduser(args.MAIN_DIR))
+print("Loading training data")
 
-print("now loading OG training data")
-
-train = pd.read_csv(r"data/train.csv")
-test = pd.read_csv(r"data/test.csv")
+train = pd.read_csv(r"../../data/train.csv")
+test = pd.read_csv(r"../../data/test.csv")
 
 train = train[train.id <= args.N_CUST_SAMPLE]
 test = test[test.id <= args.N_CUST_SAMPLE]
 
 train["cust_first_week"] = train.week - train.iweek
 
-print("data loaded, beginning formatting")
+print("Data loaded, beginning formatting")
 
 n_cust = len(train.id.unique())
 n_week_train = len(train.week.unique())

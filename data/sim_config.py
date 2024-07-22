@@ -3,9 +3,6 @@ from numpy import pi as pi
 import pymc as pm
 from pymc.gp.util import stabilize, cholesky, JITTER_DEFAULT
 
-np.random.seed(7926)
-
-
 def draw_routine_kernel(amp, ls, lkj_scale):
     # Draw corr:
     corrmat = 0.5 * np.eye(7)
